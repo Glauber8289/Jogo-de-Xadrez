@@ -55,6 +55,12 @@ public class ChessMatch {
 			validateSourcePosition (source);
 			validateTargetPosition(source, target);
 			Piece capturedPiece = makeMove(source,target);
+			if (testCheck(currentPlayer)) {
+				undoMove(source, target, capturedPiece);
+				throw new ChessException("Voce não pode se colocar em CHECK ");
+			}
+
+			check = (testCheck(opponent(currentPlayer))) ? true : false;
 			nextTurn();
 			return (ChessPiece)capturedPiece;
 		}
@@ -109,7 +115,7 @@ public class ChessMatch {
 					return (ChessPiece)p;
 				}
 			}
-			throw new IllegalStateException("Não existe o rei " + color + "no tabuleiro");
+			throw new IllegalStateException("There is no " + color + " king on the board");
 		}
 
 		private boolean testCheck(Color color) {
