@@ -213,18 +213,18 @@ public class ChessMatch {
 		}
 		private void validateSourcePosition(Position position) {
 			if(!board.thereIsAPiece(position)) {
-				throw new ChessException("Nao existe peca na posição de origem. ");
+				throw new ChessException("Nao existe peca na posicao de origem. ");
 			}
 			if (currentPlayer != ((ChessPiece)board.piece(position)).getColor()) {
-				throw new ChessException("A peça escolhida não é sua");
+				throw new ChessException("A peca escolhida nao e sua");
 			}
 			if (!board.piece(position).isThereAnyPossibleMove()) {
-				throw new ChessException("Nao ha movimentos possíveis para a peca escolhida");
+				throw new ChessException("Nao ha movimentos possiveis para a peca escolhida");
 			}
 		}
 		private void validateTargetPosition(Position source, Position target) {
 			if (!board.piece(source).possibleMove(target)) {
-				throw new ChessException("A peça escolhida nao pode se mover para a posição de destino");
+				throw new ChessException("A peca escolhida nao pode se mover para a posição de destino");
 			}
 		}
 		private void nextTurn() {
